@@ -1,10 +1,12 @@
 # asr_challenge
 
 General
+
 Knowing that I was dealing with transcriptions of audio recordings, I set off on this task having decided to use an RNN to leverage phonological dependence within words. All models were trained through Tensorflow’s Sequential module. 
 
 
 Baseline
+
         To get an idea of baseline performance, for my first training run, my only goal was to get the model running. In this run, I did basic preprocessing where I one-hot encoded all that targets and changed feneme names to integers in the training data. I then padded all the training data to be the length of the largest sample (400); I did not use endpoint data for this trial in an attempt to see if the model could notice changes in intensity (i.e. transitions from ‘whitespace’ fenemes, to utterance, back to silence). The first structure consisted of an input layer and an LSTM layer with 100 units. Performance was very poor with a training accuracy of .15 and a validation of about .05. To further use phonology, I added a bidirectional connection to the LSTM layer to see how a feneme predicts those that come before. While I saw significant improvement, the model severely overfits the training data with a nearly perfect training accuracy and a validation accuracy with ~.20. 
         
 Improvements
@@ -15,6 +17,7 @@ Out of curiosity, I trained a CNN instead of using the LSTM layer. This model en
 
 
 Discussion
+
         The ASR challenge was a very rewarding experience; however, as an experiment, my project is still in its rudimentary phases. Given more time and resources I would have liked to run several more tests. First, I would have studied further into the data distributions such as the endpoint locations and also feature frequency to see if any feneme classes can be weighted differently. A deeper understanding of the data would have helped in creating clever preprocessing techniques. I would have also liked to do a more thorough hyperparameter testing including layer numbers and size as well as different models entirely, such as vectorizing each feneme, averaging over the utterance and training an SVM. As is usually the case, I believe these models would have greatly benefitted from more training data. Without access to that, I would like to see how cross validation can affect performance. I would have also liked to look into the data transcription process like how the fenemes are encoded. 
         As a preliminary test, the results of this project are fascinating and I would be interested in seeing how the above points could improve the model. 
 
